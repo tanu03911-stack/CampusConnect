@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusConnect | College Campus Assistant</title>
+<style>
+:root{--navy:#14213d;--blue:#2563eb;--pale:#eef4ff;--ink:#1f2937;--muted:#64748b;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:var(--ink);line-height:1.5}
+header{background:var(--navy);color:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:1.35rem}nav a{color:#e5edff;text-decoration:none;margin-left:18px;font-size:.95rem}
+.hero{padding:54px 7%;background:linear-gradient(120deg,#eaf1ff,#fff);display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center}
+.eyebrow{color:var(--blue);font-weight:bold;text-transform:uppercase;letter-spacing:1px;font-size:.8rem}
+h1{font-size:clamp(2rem,4vw,3.3rem);line-height:1.1;margin:12px 0}p{color:var(--muted)}
+.hero p{max-width:620px;font-size:1.08rem}
+button,.btn{background:var(--blue);color:white;border:0;border-radius:10px;padding:12px 17px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+.panel{background:white;border:1px solid #e1e8f4;border-radius:18px;padding:22px;box-shadow:0 10px 28px #1725540c}
+main{padding:34px 7%}.section-title{margin:0 0 6px;font-size:1.65rem}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:22px 0 36px}
+.card{background:white;border:1px solid #e3eaf5;border-radius:14px;padding:20px}
+.card .emoji{font-size:1.8rem}.card h3{margin:8px 0 4px}.card p{margin:0 0 14px}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+label{display:block;font-weight:bold;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font:inherit;background:white}
+#answer{margin-top:14px;background:var(--pale);padding:14px;border-radius:10px;white-space:pre-wrap;color:var(--navy);min-height:55px}
+ul{padding-left:20px;color:var(--muted)}footer{text-align:center;background:var(--navy);color:white;padding:22px;margin-top:30px}footer p{color:#d6e1f7;margin:5px}
+@media(max-width:760px){.hero,.tools{grid-template-columns:1fr}.cards{grid-template-columns:1fr}nav a{margin:0 12px 0 0}header{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header><div class="brand">🎓 CampusConnect</div><nav><a href="#services">Services</a><a href="#assistant">Ask Assistant</a><a href="#about">About</a></nav></header>
+<section class="hero">
+<div><div class="eyebrow">AI-powered college campus assistant</div><h1>Your campus information, all in one place.</h1><p>CampusConnect is a student-friendly concept that helps students quickly find campus information, academic reminders, office contacts and answers to common college questions.</p><a class="btn" href="#assistant">Try the demo assistant</a></div>
+<div class="panel"><h2>Welcome, students!</h2><p>What can CampusConnect help you with today?</p><ul><li>Find common campus services</li><li>Check a sample academic reminder</li><li>Get guidance for frequently asked questions</li></ul><small>Demo prototype — sample information only.</small></div>
+</section>
+<main>
+<section id="services"><h2 class="section-title">Campus services</h2><p>Quick access to common student needs.</p>
+<div class="cards">
+<div class="card"><div class="emoji">📚</div><h3>Academic Support</h3><p>Study resources, timetable guidance and assignment reminders.</p><button onclick="quickAsk('academic')">Ask about academics</button></div>
+<div class="card"><div class="emoji">🏢</div><h3>College Offices</h3><p>Guidance on whom to contact for common administrative questions.</p><button onclick="quickAsk('office')">Find office guidance</button></div>
+<div class="card"><div class="emoji">📅</div><h3>Events & Reminders</h3><p>Keep track of events, deadlines and campus announcements.</p><button onclick="quickAsk('events')">Ask about reminders</button></div>
+</div></section>
+<section id="assistant"><h2 class="section-title">Ask CampusConnect</h2><p>This is a simple interactive demo. It uses sample responses and is not connected to the college's official systems.</p>
+<div class="tools">
+<div class="panel"><label for="question">Type your question</label><textarea id="question" rows="4" placeholder="Example: Where can I ask about my fees?"></textarea><button style="margin-top:12px" onclick="ask()">Get an answer</button><div id="answer" aria-live="polite">Your demo answer will appear here.</div></div>
+<div class="panel" id="about"><h3>About this project</h3><p><strong>Project:</strong> CampusConnect — AI-Powered College Campus Assistant</p><p><strong>Presented by:</strong> Tanushree</p><p><strong>Institution:</strong> Soundarya Institute of Management and Science</p><p><strong>SDG alignment:</strong> SDG 4 — Quality Education</p><p><strong>Current status:</strong> Front-end demonstration prototype. Official data, authentication, database and live AI integration are not included.</p></div>
+</div></section>
+</main>
+<footer><strong>CampusConnect</strong><p>Helping students find campus information more easily.</p><p>Concept prototype | Tanushree</p></footer>
+<script>
+function answerFor(q){
+ const s=q.toLowerCase();
+ if(/fee|payment|receipt|scholarship/.test(s)) return "For fees, receipts or scholarship questions, contact your college accounts office or scholarship coordinator. Please confirm deadlines and requirements with official college notices.";
+ if(/timetable|class|subject|exam|assignment|study|academic/.test(s)) return "For timetable, exam and assignment details, check the latest official notice or contact your department. This demo does not contain your college's live timetable.";
+ if(/event|fest|program|reminder|deadline/.test(s)) return "Check official college announcements or your department group for verified event dates and deadlines. This demo cannot send live reminders yet.";
+ if(/office|contact|admin|certificate|document/.test(s)) return "For certificates and administrative documents, start with your college office. For fee matters, contact accounts; for academic matters, contact your department. Confirm the correct office with your college.";
+ if(/library|book/.test(s)) return "For book availability and library hours, contact the college library or check its official notice. Live catalogue access is not connected in this demo.";
+ return "I can help with general guidance about academics, fees, college offices, library services and campus events. Please verify important details with an official college source.";
+}
+function ask(){const q=document.getElementById('question').value.trim();document.getElementById('answer').textContent=q?answerFor(q):"Please type a question first."}
+function quickAsk(type){const qs={academic:"How can I get academic and exam information?",office:"Where should I ask about college office documents?",events:"Where can I check campus events and reminders?"};document.getElementById('question').value=qs[type];ask();document.getElementById('assistant').scrollIntoView({behavior:'smooth'});}
+</script>
+</body>
+</html>
